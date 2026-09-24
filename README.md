@@ -104,3 +104,10 @@ From the project root:
 ```bash
 pytest
 ```
+
+## Next steps 
+
+- Handle edge cases
+  - Names / dates that compute to 0 
+  - Double spaces in names
+- Create shared function for destiny and soul urge

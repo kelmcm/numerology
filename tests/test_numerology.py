@@ -19,6 +19,23 @@ def test_clean_birthday_invalid(birthday):
     with pytest.raises(ValueError):
         numerology.clean_birthday(birthday)
 
+@pytest.mark.parametrize("full_name, expected", [
+    ("Jane Doe", "Jane Doe"),
+    ("Mary-Jane O'Brien", "MaryJane OBrien"),
+    ("Jane2 Doe", "Jane Doe")
+])
+def test_clean_name(full_name, expected):
+    assert numerology.clean_name(full_name) == expected
+
+@pytest.mark.parametrize("full_name", [
+    "",
+    "123",
+    "-'"
+])
+def test_clean_name_invalid(full_name):
+    with pytest.raises(ValueError):
+        numerology.clean_name(full_name)
+
 @pytest.mark.parametrize("birthday, expected", [
     ("1995-09-01", 7),
     ("09/01/1995", 7),

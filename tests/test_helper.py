@@ -48,3 +48,48 @@ def test_add_digits_master_number(number, expected):
 ])
 def test_add_digits_single_digit(number, expected):
     assert helper.add_digits(number) == expected
+
+@pytest.mark.parametrize("number, expected", [
+    (1, "Leader"),
+    (9, "Humanitarian"),
+    (11, "Master Intuitive"),
+    (22, "Master Builder"),
+    (33, "Master Teacher"),
+    (0, None),
+    (10, None)
+])
+def test_get_number_meaning(number, expected):
+    assert helper.get_number_meaning(number) == expected
+
+@pytest.mark.parametrize("input_string, expected", [
+    ("Jane Doe", "Jane Doe"),
+    ("Mary-Jane O'Brien", "MaryJane OBrien"),
+    ("Jane123", "Jane"),
+    ("José", "Jos"),
+    ("Jane  Doe", "Jane  Doe"),
+    ("123", ""),
+    ("", "")
+])
+def test_extract_characters(input_string, expected):
+    assert helper.extract_characters(input_string) == expected
+
+@pytest.mark.parametrize("word, expected", [
+    ("jane", [1, 1, 5, 5]),
+    ("JANE", [1, 1, 5, 5]),
+    ("abcdefghi", [1, 2, 3, 4, 5, 6, 7, 8, 9]),
+    ("jrs", [1, 9, 1]),
+    ("z", [8]),
+    ("", [])
+])
+def test_convert_word_to_number(word, expected):
+    assert helper.convert_word_to_number(word) == expected
+
+@pytest.mark.parametrize("word, expected", [
+    ("jane", [1, 5]),
+    ("DOE", [6, 5]),
+    ("lynn", [7]),
+    ("brr", []),
+    ("", [])
+])
+def test_convert_word_to_number_only_vowels(word, expected):
+    assert helper.convert_word_to_number(word, only_vowels=True) == expected
